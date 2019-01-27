@@ -2,7 +2,7 @@
 
 /**
  * wraps each list item in braces
- * @param {Array|number|string} idxs - sequential index list or a single element
+ * @param {Array | number} idxs - sequential index list or a single element
  */
 function wrap(idxs = [] | 0) {
   if (Array.isArray(idxs)) {
@@ -19,57 +19,48 @@ function wrap(idxs = [] | 0) {
 }
 
 /**
- * flatten function for the single or multidimensional array
+ * flatten function for the flattening single or multidimensional array
  * @param {Array} input - single or multidimensional array
- * @returns {Object} json-like
+ * @returns {Object} json like { "[0]": 2, "[1]": 3, "[2][0]": 4, "[2][1]": 3, "[2][2]": 2 }
  */
 function flatten(input = []) {
   let flat = [...input];
-  /**
-   * json-like output
-   * @example [2, 3, [4, 3, 2]] converts to { "[0]": 2, "[1]": 3, "[2][0]": 4, "[2][1]": 3, "[2][2]": 2 }
-   */
   let json = {};
   /**
-   * previous iteration element
+   * previous element
    */
   let prev = [];
   /**
    * store of array paths (indexes)
    */
   let idxs = [];
-  /**
-   * iterator
-   */
   let i = -1;
 
   while (++i < flat.length) {
     /**
-     * @constant curr is current element of list
+     * @constant curr is a current element of the list
      * it can be array or any value inside the array
      */
     const curr = flat[i];
 
     if (Array.isArray(curr)) {
       /**
-       * @constant ridx is index of current array element
-       * inside input array
-       * it is the first deep level
+       * @constant ridx is the index the current array
+       * element inside input array
        */
       const ridx = input.indexOf(curr);
 
       /**
-       * @constant cidx is index of current array element
-       * inside previous array
+       * @constant cidx is the index of current array
+       * element inside previous array
        * this is needed to determine the positions
        * of nested arrays
        */
       const cidx = prev.indexOf(curr);
 
       /**
-       * if input array contains current element
-       * push element index (array position) to
-       * the idxs array
+       * if the input array contains a current element
+       * push this element index to the idxs array
        */
       if (ridx > -1) {
         // clear store if it is a new root element
@@ -80,8 +71,8 @@ function flatten(input = []) {
       }
 
       /**
-       * if previous element contains current element
-       * thet means it is nested array and we need to
+       * if a previous element contains a current element
+       * thet means it is a nested array and we need to
        * push all idxs of nested arrays to the idxs
        */
       if (cidx > -1) {
@@ -90,28 +81,24 @@ function flatten(input = []) {
 
       /**
        * as a result, the array of idxs will
-       * correspond to the path to the specific element
-       * in the original array
+       * correspond to the path to the specific
+       * element in the input (original) array
        */
       let j = 0;
-      /**
-       * cache for better for-loop performance
-       */
       let cache = curr.length;
 
       for (j; j < cache; j++) {
         // skip non-array elements
         if (!Array.isArray(curr[j])) {
           /**
-           * create a property of the object that
-           * corresponds to the path to the element
-           * of array
+           * create a property of the object that corresponds
+           * to the path to the element of array
            */
           json[wrap([...idxs, j])] = curr[j];
         }
       }
 
-      // splice array in current position for deeping
+      // splice array in the current position for deeping
       flat.splice(i, 1, ...flat[i--]);
 
       // update previous value
@@ -119,13 +106,9 @@ function flatten(input = []) {
     } else {
       /**
        * if at the first level of nesting
-       * a number comes across we process it
-       * in a similar way
+       * a number comes across we process it in a similar way
        */
       let j = 0;
-      /**
-       * cache for better for-loop performance
-       */
       let cache = input.length;
 
       for (j; j < cache; j++) {
