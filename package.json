@@ -22,5 +22,11 @@
     "arrays",
     "flatten-array"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^24.0.0"
+  }
 }
