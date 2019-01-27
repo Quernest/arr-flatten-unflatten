@@ -1,7 +1,7 @@
 {
   "name": "arr-flatten-unflatten",
   "version": "0.0.2",
-  "description": "flatten multidimensional or a signle array and unflatten result",
+  "description": "non-recursive method of flattening an array or arrays and unflattening the result",
   "main": "index.js",
   "author": "Quernest",
   "repository": {
