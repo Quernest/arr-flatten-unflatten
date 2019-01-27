@@ -6,16 +6,16 @@
  */
 function wrap(idxs = [] | 0) {
   if (Array.isArray(idxs)) {
-    let braced = [];
+    let line = "";
 
     for (let i = 0; i < idxs.length; i++) {
-      braced.push("[" + idxs[i] + "]");
+      line += `[${idxs[i]}]`;
     }
 
-    return braced.join("");
+    return line;
   }
 
-  return "[" + idxs + "]";
+  return `[${idxs}]`;
 }
 
 /**
@@ -27,7 +27,7 @@ function flatten(input = []) {
   let flat = [...input];
   /**
    * json-like output
-   * @example [2, 3, [4, 3, 2]] converts to { [0]: 2, [1]: 3, [2][0]: 4, [2][1]: 3, [2][2]: 2 }
+   * @example [2, 3, [4, 3, 2]] converts to { "[0]": 2, "[1]": 3, "[2][0]": 4, "[2][1]": 3, "[2][2]": 2 }
    */
   let json = {};
   /**
