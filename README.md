@@ -45,8 +45,6 @@ Pull requests and stars are always welcome. For bugs and feature requests, [plea
 
 ### Author
 
-**Quernest**
-
 - [github/Quernest](https://github.com/quernest)
 
 ### License
