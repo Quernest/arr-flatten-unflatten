@@ -1,6 +1,6 @@
 {
   "name": "arr-flatten-unflatten",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "non-recursive method of flattening an array or arrays and unflattening the result",
   "main": "index.js",
   "author": "Quernest",
