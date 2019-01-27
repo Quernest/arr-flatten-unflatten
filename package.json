@@ -1,6 +1,6 @@
 {
   "name": "arr-flatten-unflatten",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "flatten multidimensional or a signle array and unflatten result",
   "main": "index.js",
   "author": "Quernest",
