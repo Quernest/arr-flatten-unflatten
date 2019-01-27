@@ -1,0 +1,12 @@
+{
+  "name": "arr-flatten-unflatten",
+  "version": "0.0.1",
+  "description": "flatten multidimensional or a signle array and unflatten result",
+  "main": "index.js",
+  "author": "Quernest",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Quernest/flatten.git"
+  },
+  "license": "ISC"
+}
