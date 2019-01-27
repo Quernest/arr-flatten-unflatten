@@ -8,5 +8,19 @@
     "type": "git",
     "url": "https://github.com/Quernest/flatten.git"
   },
+  "keywords": [
+    "flatten",
+    "unflatten",
+    "flat",
+    "unflat",
+    "deflat",
+    "flattendeep",
+    "flatdeep",
+    "non-recursive",
+    "array-flattening",
+    "array",
+    "arrays",
+    "flatten-array"
+  ],
   "license": "MIT"
 }
