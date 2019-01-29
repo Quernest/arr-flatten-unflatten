@@ -1,4 +1,9 @@
-# arr-flatten-unflatten ![NPM version](https://img.shields.io/npm/v/arr-flatten-unflatten.svg?style=flat)
+# arr-flatten-unflatten
+
+[![package version](https://img.shields.io/npm/v/arr-flatten-unflatten.svg?style=flat-square)](https://npmjs.org/package/arr-flatten-unflatten)
+[![package downloads](https://img.shields.io/npm/dm/arr-flatten-unflatten.svg?style=flat-square)](https://npmjs.org/package/arr-flatten-unflatten)
+[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
+[![package license](https://img.shields.io/npm/l/arr-flatten-unflatten.svg?style=flat-square)](https://npmjs.org/package/arr-flatten-unflatten)
 
 > non-recursive method of flattening an array or arrays and unflattening the result
 
