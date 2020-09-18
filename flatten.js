@@ -1,10 +1,6 @@
 "use strict";
 
-/**
- * wraps each list item in braces
- * @param {Array | number} idxs - sequential index list or a single element
- */
-function wrap(idxs = [] | 0) {
+function wrap(idxs = []) {
   if (Array.isArray(idxs)) {
     let line = "";
 
@@ -18,108 +14,34 @@ function wrap(idxs = [] | 0) {
   return `[${idxs}]`;
 }
 
-/**
- * flatten function for the flattening single or multidimensional array
- * @param {Array} input - single or multidimensional array
- * @returns {Object} json like { "[0]": 2, "[1]": 3, "[2][0]": 4, "[2][1]": 3, "[2][2]": 2 }
- */
-function flatten(input = []) {
-  let flat = [...input];
-  let json = {};
-  /**
-   * previous element
-   */
-  let prev = [];
-  /**
-   * store of array paths (indexes)
-   */
-  let idxs = [];
-  let i = -1;
+function flatten(arr = []) {
+  if (!Array.isArray(arr)) {
+    return arr;
+  }
 
-  while (++i < flat.length) {
-    /**
-     * @constant curr is a current element of the list
-     * it can be array or any value inside the array
-     */
-    const curr = flat[i];
+  let i = 0;
+  let input = [arr];
+  let lastIndex = [-1];
+  let flat = {};
 
-    if (Array.isArray(curr)) {
-      /**
-       * @constant ridx is the index the current array
-       * element inside input array
-       */
-      const ridx = input.indexOf(curr);
+  while (input.length) {
+    arr = input.pop();
+    i = lastIndex.pop() + 1;
 
-      /**
-       * @constant cidx is the index of current array
-       * element inside previous array
-       * this is needed to determine the positions
-       * of nested arrays
-       */
-      const cidx = prev.indexOf(curr);
-
-      /**
-       * if the input array contains a current element
-       * push this element index to the idxs array
-       */
-      if (ridx > -1) {
-        // clear store if it is a new root element
-        idxs = [];
-
-        // pushing...
-        idxs.push(ridx);
-      }
-
-      /**
-       * if a previous element contains a current element
-       * thet means it is a nested array and we need to
-       * push all idxs of nested arrays to the idxs
-       */
-      if (cidx > -1) {
-        idxs.push(cidx);
-      }
-
-      /**
-       * as a result, the array of idxs will
-       * correspond to the path to the specific
-       * element in the input (original) array
-       */
-      let j = 0;
-      let cache = curr.length;
-
-      for (j; j < cache; j++) {
-        // skip non-array elements
-        if (!Array.isArray(curr[j])) {
-          /**
-           * create a property of the object that corresponds
-           * to the path to the element of array
-           */
-          json[wrap([...idxs, j])] = curr[j];
-        }
-      }
-
-      // splice array in the current position for deeping
-      flat.splice(i, 1, ...flat[i--]);
-
-      // update previous value
-      prev = curr;
-    } else {
-      /**
-       * if at the first level of nesting
-       * a number comes across we process it in a similar way
-       */
-      let j = 0;
-      let cache = input.length;
-
-      for (j; j < cache; j++) {
-        if (input[j] === curr) {
-          json[wrap(j)] = curr;
-        }
+    for (; i < arr.length; ++i) {
+      if (Array.isArray(arr[i])) {
+        input.push(arr);
+        lastIndex.push(i);
+        arr = arr[i];
+        i = -1;
+      } else {
+        const path = lastIndex.length === 0 ? i : lastIndex.concat(i);
+        flat[wrap(path)] = arr[i];
       }
     }
   }
-
-  return json;
+  
+  return flat;
 }
 
 module.exports = flatten;
