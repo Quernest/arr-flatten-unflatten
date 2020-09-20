@@ -1,9 +1,6 @@
 const unflatten = require("./unflatten");
 
 test("unflattens object", () => {
-  /**
-   * json-like object
-   */
   const json = {
     "[0]": 2,
     "[1]": 4,
@@ -15,9 +12,6 @@ test("unflattens object", () => {
     "[3]": 5
   };
 
-  /**
-   * expected result
-   */
   const arr = [2, 4, [8, [2, [32, 64]], 7], 5];
 
   expect(unflatten(json)).toMatchObject(arr);
