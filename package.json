@@ -1,12 +1,11 @@
 {
   "name": "arr-flatten-unflatten",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "non-recursive method of flattening an array or arrays and unflattening the result",
   "main": "index.js",
   "author": "Quernest",
   "repository": {
-    "type": "git",
-    "url": "https://github.com/Quernest/flatten.git"
+    "url": "git@github.com:Quernest/arr-flatten-unflatten.git"
   },
   "keywords": [
     "flatten",
@@ -28,8 +27,5 @@
   },
   "devDependencies": {
     "jest": "^24.0.0"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
   }
 }
