@@ -10,6 +10,8 @@ function unflatten(obj = {}) {
     let m = {};
 
     while ((m = regex.exec(p))) {
+      if (curr[prop] === constructor.prototype)
+        curr[prop] = {}
       curr = curr[prop] || (curr[prop] = m[2] ? [] : {});
       prop = m[2] || m[1];
     }
